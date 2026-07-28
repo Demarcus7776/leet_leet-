@@ -1,43 +1,39 @@
 #include <stdio.h>
 
-int	ft_strlen(int *s)
-{
-	int i;
-	
-	while (s[i])
-		i++;
-	
-	return i;
-}
-
 int	anagram(char *s, char *d)
 {
-	int	i = 0;
-	int	j;
-	int	ls = ft_strlen(s);
-	int	ld = ft_strlen(d);
+	int i;
+	int arr[26];
 
-	if()
-	while(s[i])
+	i = 0;
+	while(i < 26)
 	{
-		j = 0;
-		while (d[j])
-		{
-			if(s[i] == d[j])
-				break;
-			if (d[j] != s[i] && d[j + 1] == '\0')
-				return 0;
-		j++;
-		}
-		i++;
+		arr[i] = 0;
+	i++;
+	}
+
+	i = 0;
+	while(s[i] && d[i])
+	{
+		arr[s[i] - 'a']++;
+		arr[d[i] - 'a']--;
+	i++;
+	}
+	if(s[i] || d[i])
+		return 0;
+	i = 0;
+	while(i < 26)
+	{
+		if(arr[i] != 0)
+			return 0;
+	i++;
 	}
 	return 1;
 }
-
-int main()
+int main(int ac, char **av)
 {
-	char s[] = "a";
-	char d[] = "ab";
-
-	printf("%d", anagram(s,d));
+	if(ac == 3)
+	{
+		printf("%d", anagram(av[1],av[2]));
+	}
 }
